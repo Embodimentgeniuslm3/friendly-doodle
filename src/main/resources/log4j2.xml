@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration monitorInterval="120">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss}{GMT-7} %p [%c] - &lt;%m&gt;%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <AsyncLogger name="org.apereo.cas" level="trace"  />
+        <AsyncLogger name="org.apereo.cas.util" level="warn"  />
+        <AsyncLogger name="org.springframework.web" level="info"  />
+        <AsyncLogger name="org.pac4j" level="info"  />
+
+        <AsyncLogger name="org.apereo.cas.web.support.DefaultArgumentExtractor" level="error"  />
+        <AsyncLogger name="org.apereo.cas.authentication.principal.WebApplicationServiceFactory" level="error"  />
+        <AsyncLogger name="org.apereo.cas.ticket.registry.DefaultTicketRegistryCleaner" level="error"  />
+        <AsyncRoot level="warn">
+            <AppenderRef ref="console"/>
+        </AsyncRoot>
+    </Loggers>
+</Configuration>
