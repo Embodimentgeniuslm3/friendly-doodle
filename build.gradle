@@ -1,0 +1,32 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+}
+
+
+plugins {
+    id "de.undercouch.download" version "4.0.4"
+}
+
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+apply plugin: "java-library"
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+
+task downloadFile(type: Download) {
+    src "https://docs.gradle.com/build-cache-node/jar/build-cache-node-9.1.jar"
+    dest new File("${projectDir}/build-cache-node.jar")
+    overwrite true
+}
+
+build.dependsOn downloadFile
