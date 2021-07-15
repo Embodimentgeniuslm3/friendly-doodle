@@ -1,0 +1,85 @@
+package org.apereo.cas.adaptors.swivel;
+
+import org.apereo.cas.authentication.AuthenticationHandler;
+import org.apereo.cas.authentication.CoreAuthenticationTestUtils;
+import org.apereo.cas.util.MockWebServer;
+import org.apereo.cas.web.support.WebUtils;
+
+import lombok.SneakyThrows;
+import lombok.val;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.mock.web.MockServletContext;
+import org.springframework.webflow.context.servlet.ServletExternalContext;
+import org.springframework.webflow.execution.RequestContextHolder;
+import org.springframework.webflow.test.MockRequestContext;
+
+import java.nio.charset.StandardCharsets;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * This is {@link SwivelAuthenticationHandlerTests}.
+ *
+ * @author Misagh Moayyed
+ * @since 5.3.0
+ */
+@SpringBootTest(classes = BaseSwivelAuthenticationTests.SharedTestConfiguration.class,
+    properties = {
+        "cas.authn.mfa.swivel.swivelUrl=http://localhost:9191",
+        "cas.authn.mfa.swivel.sharedSecret=$ecret",
+        "cas.authn.mfa.swivel.ignoreSslErrors=true"
+    })
+@Tag("MFA")
+public class SwivelAuthenticationHandlerTests {
+    @Autowired
+    @Qualifier("swivelAuthenticationHandler")
+    private AuthenticationHandler swivelAuthenticationHandler;
+
+    private MockWebServer webServer;
+
+    @BeforeEach
+    public void initialize() {
+        val data = "<?xml version=\"1.0\" ?>"
+            + "<SASResponse secret=\"MyAdminAgent\" version=\"3.4\">"
+            + "<Version>3.6</Version>\n"
+            + "<Result>PASS</Result>\n"
+            + "<SessionID>c7379ef1b41f90a4900548a75e13f62a</SessionID>"
+            + "</SASResponse>";
+        this.webServer = new MockWebServer(9191,
+            new ByteArrayResource(data.getBytes(StandardCharsets.UTF_8), "REST Output"),
+            MediaType.APPLICATION_JSON_VALUE);
+        this.webServer.start();
+    }
+
+    @AfterEach
+    public void cleanup() {
+        this.webServer.stop();
+    }
+
+    @Test
+    public void verifySupports() {
+        assertFalse(swivelAuthenticationHandler.supports(CoreAuthenticationTestUtils.getCredentialsWithSameUsernameAndPassword()));
+        assertTrue(swivelAuthenticationHandler.supports(new SwivelTokenCredential("123456")));
+    }
+
+    @Test
+    @SneakyThrows
+    public void verifyAuthn() {
+        val c = new SwivelTokenCredential("123456");
+        val context = new MockRequestContext();
+        WebUtils.putAuthentication(CoreAuthenticationTestUtils.getAuthentication(), context);
+        context.setExternalContext(new ServletExternalContext(new MockServletContext(), new MockHttpServletRequest(), new MockHttpServletResponse()));
+        RequestContextHolder.setRequestContext(context);
+        assertNotNull(swivelAuthenticationHandler.authenticate(c));
+    }
+}
