@@ -1,0 +1,327 @@
+if (hasTestsOfCategory(project, "Cassandra")) {
+    task testCassandra(type: Test) {
+        enabled = shouldTest(project, "Cassandra")
+        useJUnitPlatform {
+            includeTags "Cassandra"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "CosmosDb")) {
+    task testCosmosDb(type: Test) {
+        enabled = shouldTest(project, "CosmosDb")
+        useJUnitPlatform {
+            includeTags "CosmosDb"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "ActiveMQ")) {
+    task testActiveMQ(type: Test) {
+        enabled = shouldTest(project, "ActiveMQ")
+        useJUnitPlatform {
+            includeTags "ActiveMQ"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "AmazonWebServices")) {
+    task testAWSS3(type: Test) {
+        enabled = shouldTest(project, "AmazonWebServices")
+        useJUnitPlatform {
+            includeTags "AmazonWebServices"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "Radius")) {
+    task testRadius(type: Test) {
+        enabled = shouldTest(project, "Radius")
+        useJUnitPlatform {
+            includeTags "Radius"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "Couchbase")) {
+    task testCouchbase(type: Test) {
+        enabled = shouldTest(project, "Couchbase")
+        useJUnitPlatform {
+            includeTags "Couchbase"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "CouchDb")) {
+    task testCouchDb(type: Test) {
+        enabled = shouldTest(project, "CouchDb")
+        useJUnitPlatform {
+            includeTags "CouchDb"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "MySQL")) {
+    task testMySQL(type: Test) {
+        enabled = shouldTest(project, "MySQL")
+        useJUnitPlatform {
+            includeTags "MySQL"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "Postgres")) {
+    task testPostgres(type: Test) {
+        enabled = shouldTest(project, "Postgres")
+        useJUnitPlatform {
+            includeTags "Postgres"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "MsSqlServer")) {
+    task testMsSqlServer(type: Test) {
+        enabled = shouldTest(project, "MsSqlServer")
+        useJUnitPlatform {
+            includeTags "MsSqlServer"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "MariaDb")) {
+    task testMariaDb(type: Test) {
+        enabled = shouldTest(project, "MariaDb")
+        useJUnitPlatform {
+            includeTags "MariaDb"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "DynamoDb")) {
+    task testDynamoDb(type: Test) {
+        enabled = shouldTest(project, "DynamoDb")
+        useJUnitPlatform {
+            includeTags "DynamoDb"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "FileSystem")) {
+    task testFileSystem(type: Test) {
+        enabled = shouldTest(project, "FileSystem")
+        useJUnitPlatform {
+            includeTags "FileSystem"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "Ignite")) {
+    task testIgnite(type: Test) {
+        enabled = shouldTest(project, "Ignite")
+        useJUnitPlatform {
+            includeTags "Ignite"
+        }
+        def list = []
+        list.add("--add-exports")
+        list.add("java.base/jdk.internal.misc=ALL-UNNAMED")
+        list.add("--add-exports")
+        list.add("java.base/sun.nio.ch=ALL-UNNAMED")
+        jvmArgs = list
+    }
+}
+
+if (hasTestsOfCategory(project, "InfluxDb")) {
+    task testInfluxDb(type: Test) {
+        enabled = shouldTest(project, "InfluxDb")
+        useJUnitPlatform {
+            includeTags "InfluxDb"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "Oracle")) {
+    task testOracle(type: Test) {
+        enabled = shouldTest(project, "Oracle")
+        useJUnitPlatform {
+            includeTags "Oracle"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "Ldap")) {
+    task testLdap(type: Test) {
+        enabled = shouldTest(project, "Ldap")
+        useJUnitPlatform {
+            includeTags "Ldap"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "Groovy")) {
+    task testGroovy(type: Test) {
+        enabled = shouldTest(project, "Groovy")
+        useJUnitPlatform {
+            includeTags "Groovy"
+        }
+    }
+}
+
+
+if (hasTestsOfCategory(project, "Mail")) {
+    task testMail(type: Test) {
+        enabled = shouldTest(project, "Mail")
+        useJUnitPlatform {
+            includeTags "Mail"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "RestfulApi")) {
+    task testRestful(type: Test) {
+        enabled = shouldTest(project, "RestfulApi")
+        useJUnitPlatform {
+            includeTags "RestfulApi"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "Memcached")) {
+    task testMemcached(type: Test) {
+        enabled = shouldTest(project, "Memcached")
+        useJUnitPlatform {
+            includeTags "Memcached"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "MongoDb")) {
+    task testMongoDb(type: Test) {
+        enabled = shouldTest(project, "MongoDb")
+        useJUnitPlatform {
+            includeTags "MongoDb"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "Redis")) {
+    task testRedis(type: Test) {
+        enabled = shouldTest(project, "Redis")
+        useJUnitPlatform {
+            includeTags "Redis"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "OAuth")) {
+    task testOAuth(type: Test) {
+        enabled = shouldTest(project, "OAuth")
+        useJUnitPlatform {
+            includeTags "OAuth"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "UMA")) {
+    task testUma(type: Test) {
+        enabled = shouldTest(project, "UMA")
+        useJUnitPlatform {
+            includeTags "UMA"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "OIDC")) {
+    task testOIDC(type: Test) {
+        enabled = shouldTest(project, "OIDC")
+        useJUnitPlatform {
+            includeTags "OIDC"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "SAML")) {
+    task testSAML(type: Test) {
+        enabled = shouldTest(project, "SAML")
+        useJUnitPlatform {
+            includeTags "SAML"
+        }
+    }
+}
+
+if (hasTestsOfCategory(project, "JDBC")) {
+    task testJDBC(type: Test) {
+        enabled = shouldTest(project, "JDBC")
+        useJUnitPlatform {
+            includeTags "JDBC"
+        }
+    }
+}
+
+test {
+    useJUnitPlatform {
+        excludeTags "Cassandra", "CosmosDb", "Couchbase", "DynamoDb",
+                "FileSystem", "Ignite", "InfluxDb", "CouchDb",
+                "Ldap", "Mail", "MariaDb", "Memcached", "JDBC",
+                "MongoDb", "MsSqlServer", "MySQL", "Postgres", "Redis",
+                "Radius", "AmazonWebServices", "RestfulApi", "Groovy",
+                "OAuth", "OIDC", "SAML", "UMA", "Oracle", "ActiveMQ"
+    }
+    enabled = "SIMPLE".equalsIgnoreCase(rootProject.testCategoryType) && !Boolean.getBoolean("skipTests")
+}
+
+tasks.withType(Test) {
+    scanForTestClasses = false
+    ignoreFailures = Boolean.getBoolean("ignoreTestFailures")
+
+    doFirst {
+        maxParallelForks = project.ext.properties.get("maxParallelForksForTests", 4)
+        if (maxParallelForks != 2) {
+            logger.info "Maximum number of parallel forks is set to ${maxParallelForks}"
+        }
+    }
+
+    systemProperty("spring.main.banner-mode", "off")
+    failFast = true
+    jvmArgs.addAll(["-Xms512m", "-Xmx4g"])
+    classpath = it.classpath + files("${projectDir}/src/main/resources") + files("${projectDir}/src/test/resources")
+    testLogging {
+        events = ["FAILED", "STANDARD_OUT"]
+        exceptionFormat = "full"
+        showStandardStreams = Boolean.getBoolean("showStandardStreams")
+        showExceptions = true
+        showCauses = true
+    }
+    retry {
+        maxRetries = 3
+        maxFailures = 5
+        failOnPassedAfterRetry = false
+    }
+}
+
+def shouldTest(Project project, String category) {
+    !Boolean.getBoolean("skipTests") && category.equalsIgnoreCase(rootProject.testCategoryType) && hasTestsOfCategory(project, category)
+}
+
+def hasTestsOfCategory(Project project, String category) {
+    def testSrc = project.sourceSets.test.java.srcDirs
+    def res = srcTagMap.computeIfAbsent(testSrc) {
+        def tags = new HashSet()
+        testSrc.each { src ->
+            try {
+                src.eachFileRecurse { file ->
+                    if (file ==~ /.*Tests\.\w+/) {
+                        file.readLines().parallelStream().forEach() { line ->
+                            def m = line =~ /^\s*@Tag\("(\w+)"\)\s*$/
+                            if (m) {
+                                tags.addAll(m.collect { it[1] })
+                            }
+                        }
+                    }
+                }
+            } catch (ignored) {
+            }
+        }
+        tags
+    }
+    res.contains(category)
+}
