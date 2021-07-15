@@ -1,0 +1,1 @@
+web:    java $JAVA_OPTS -jar build/libs/casbootadminserver.war --server.port=$PORT --server.ssl.enabled=false --cas.server.tomcat.http.enabled=false --spring.security.user.name=casuser --spring.security.user.password=Mellon
