@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration monitorInterval="120">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{%d %p [%c] - &lt;%m&gt;}%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <AsyncLogger name="org.apereo.cas" level="info" additivity="false">
+            <AppenderRef ref="console"/>
+        </AsyncLogger>
+        <AsyncLogger name="com.netflix.client.config" level="warn" additivity="false">
+            <AppenderRef ref="console"/>
+        </AsyncLogger>
+        <AsyncLogger name="de.codecentric.boot.admin.client" level="info" additivity="false">
+            <AppenderRef ref="console"/>
+        </AsyncLogger>
+        <AsyncLogger name="org.springframework.cloud" level="warn" additivity="false">
+            <AppenderRef ref="console"/>
+        </AsyncLogger>
+        <AsyncLogger name="org.springframework.boot.admin" level="info" additivity="false">
+            <AppenderRef ref="console"/>
+        </AsyncLogger>
+        <AsyncRoot level="info">
+            <AppenderRef ref="console"/>
+        </AsyncRoot>
+    </Loggers>
+</Configuration>

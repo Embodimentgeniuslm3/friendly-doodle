@@ -1,0 +1,64 @@
+cas:
+    authn:
+        attribute-repository:
+            stub:
+                attributes:
+                    cn: CAS
+                    display-name: Apereo CAS
+                    uid: casuser
+                    first-name: Apereo
+                    last-name: CAS
+                    email: info@apereo.org
+    events:
+        track-configuration-modifications: false
+    monitor:
+        endpoints:
+            endpoint:
+                defaults:
+                    access: ANONYMOUS
+    server:
+        name: https://casserver.herokuapp.com
+        prefix: https://casserver.herokuapp.com/cas
+        tomcat:
+            http:
+                enabled: false
+    service-registry:
+        init-from-json: true
+eureka:
+    client:
+        enabled: true
+        healthcheck:
+            enabled: true
+        serviceUrl:
+            defaultZone: https://caseureka.herokuapp.com/eureka/
+    instance:
+        health-check-url: https://casserver.herokuapp.com/cas/actuator/health
+        home-page-url: https://casserver.herokuapp.com/cas/
+        status-page-url: https://casserver.herokuapp.com/cas/actuator/info
+management:
+    endpoints:
+        enabled-by-default: true
+        web:
+            exposure:
+                include: '*'
+server:
+    port: ${PORT:8221}
+    ssl:
+        enabled: false
+spring:
+    boot:
+        admin:
+            client:
+                enabled: true
+                instance:
+                    management-base-url: https://casserver.herokuapp.com/cas
+                name: CAS
+                password: Mellon
+                url: https://casbootadminserver.herokuapp.com
+                username: casuser
+    cloud:
+        config:
+            discovery:
+                enabled: false
+    zipkin:
+        baseUrl: https://caszipkinserver.herokuapp.com/
